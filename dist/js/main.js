@@ -234,4 +234,12 @@ var Utils = (function () {
     };
     return Utils;
 }());
+var Utils = (function () {
+    function Utils() {
+    }
+    Utils.prototype.objectsCollide = function (c1, c2) {
+        return (c1.x < c2.x + c2.width && c1.x + c1.width > c2.x && c1.y < c2.y + c2.height && c1.height + c1.y > c2.y);
+    };
+    return Utils;
+}());
 //# sourceMappingURL=main.js.map
