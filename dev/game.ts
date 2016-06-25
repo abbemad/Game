@@ -19,10 +19,12 @@ class Game {
     constructor() {
         
         this.numelements = 0;
-        this.timeid = setInterval(this.createElements.bind(this),50);
-        this.level = new Level(this);
-        this.playerone = new Playerone(65, 68, 87, 83);
-        this.playertwo = new Playertwo(37, 39, 38, 40);
+        this.timeid = setInterval(this.createElements.bind(this),1000); // de interval van het spammen snotwezens
+        
+        this.level = new Level(this); 
+        
+        this.playerone = new Playerone(65, 68, 87, 83); // speler nummer 1 speeltoetsen
+        this.playertwo = new Playertwo(37, 39, 38, 40); // speler nummer 2 speeltoetsen
             
         this.utils = new Utils();
             
@@ -30,7 +32,7 @@ class Game {
     }
     
     public updateScore(i:number){
-        this.score += i;
+        this.score += i; // score bijhouden
     }
     
     private gameLoop(){
@@ -40,21 +42,23 @@ class Game {
         this.level.update();
         this.level.draw();
         
-        let hit:boolean = this.utils.objectsCollide(this.playerone, this.playertwo);
+        let hit:boolean = this.utils.objectsCollide(this.playerone, this.playertwo); //als de spelers elkaar aanraken veranderd hun blokje
                
         this.playerone.showHit(hit);
         this.playertwo.showHit(hit);
                
-        // hiermee wordt de gameloop opnieuw aangeroepen
+        //gameloop opnieuw aangeroepen
         requestAnimationFrame(this.gameLoop.bind(this));
      }
      
      private createElements():void {
          
-         let snotspawn:Snotspawn = new Snotspawn();
+         let snotspawn:Snotspawn = new Snotspawn(); //element gemaakt van snotwezens
          
          this.numelements++;
-         if(this.numelements > 100){
+         
+         // hieronder het aantal snotwezens dat gespamt gaat worden      
+         if(this.numelements > 40){
              clearInterval(this.timeid);
          }
      }

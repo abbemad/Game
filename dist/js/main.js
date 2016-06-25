@@ -203,7 +203,7 @@ var Game = (function () {
     function Game() {
         this.score = 0;
         this.numelements = 0;
-        this.timeid = setInterval(this.createElements.bind(this), 50);
+        this.timeid = setInterval(this.createElements.bind(this), 1000);
         this.level = new Level(this);
         this.playerone = new Playerone(65, 68, 87, 83);
         this.playertwo = new Playertwo(37, 39, 38, 40);
@@ -226,7 +226,7 @@ var Game = (function () {
     Game.prototype.createElements = function () {
         var snotspawn = new Snotspawn();
         this.numelements++;
-        if (this.numelements > 100) {
+        if (this.numelements > 40) {
             clearInterval(this.timeid);
         }
     };
@@ -235,6 +235,14 @@ var Game = (function () {
 window.addEventListener("load", function () {
     new Game();
 });
+var Utils = (function () {
+    function Utils() {
+    }
+    Utils.prototype.objectsCollide = function (c1, c2) {
+        return (c1.x < c2.x + c2.width && c1.x + c1.width > c2.x && c1.y < c2.y + c2.height && c1.height + c1.y > c2.y);
+    };
+    return Utils;
+}());
 var Snotspawn = (function () {
     function Snotspawn() {
         var div = document.createElement("snotspawn");
