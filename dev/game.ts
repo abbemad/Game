@@ -16,7 +16,7 @@ class Game {
     constructor() {
         this.level = new Level(this);
         this.playerone = new Playerone(65, 68, 87, 83);
-        this.playertwo = new Playertwo (37, 39, 38, 40);
+        this.playertwo = new Playertwo(37, 39, 38, 40);
             
         this.utils = new Utils();
             

@@ -30,7 +30,7 @@ class Playerone {
         this.rightkey = right;
         
         // positie
-        this.x = Math.floor(200 + Math.random()*200);
+        this.x = Math.floor(0 + Math.random()*0);
         this.y = Math.floor(200 + Math.random()*200);
         this.width = 180;
         this.height = 145;

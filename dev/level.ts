@@ -16,6 +16,7 @@ class Level {
     private snot:Snot;
     private bigsnot:Bigsnot;
     
+    
     constructor(g:Game) {
         this.game = g;
                 
