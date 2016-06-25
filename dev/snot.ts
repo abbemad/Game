@@ -1,6 +1,5 @@
-/**
- * Snot
- */
+/// <reference path="gameobjects.ts" />
+
 
 class Snot extends Gameobjects{
     

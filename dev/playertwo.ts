@@ -40,7 +40,6 @@ class Playertwo {
         window.addEventListener("keyup", this.onKeyUp.bind(this));
     }
     
-    
     // keyboard input zorgt dat de snelheid wordt aangepast
     private onKeyDown(event:KeyboardEvent):void {
         switch(event.keyCode){

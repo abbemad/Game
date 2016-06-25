@@ -202,6 +202,8 @@ var Level = (function () {
 var Game = (function () {
     function Game() {
         this.score = 0;
+        this.numelements = 0;
+        this.timeid = setInterval(this.createElements.bind(this), 50);
         this.level = new Level(this);
         this.playerone = new Playerone(65, 68, 87, 83);
         this.playertwo = new Playertwo(37, 39, 38, 40);
@@ -221,11 +223,32 @@ var Game = (function () {
         this.playertwo.showHit(hit);
         requestAnimationFrame(this.gameLoop.bind(this));
     };
+    Game.prototype.createElements = function () {
+        var snotspawn = new Snotspawn();
+        this.numelements++;
+        if (this.numelements > 100) {
+            clearInterval(this.timeid);
+        }
+    };
     return Game;
 }());
 window.addEventListener("load", function () {
     new Game();
 });
+var Snotspawn = (function () {
+    function Snotspawn() {
+        var div = document.createElement("snotspawn");
+        document.body.appendChild(div);
+        var startx = (Math.random() * window.innerWidth);
+        var starty = (Math.random() * window.innerHeight);
+        div.style.left = startx + "px";
+        div.style.top = starty + "px";
+        var color = Math.random() * 360;
+        div.style.webkitFilter = "hue-rotate(" + color + "deg)";
+        div.style.filter = "hue-rotate(" + color + "deg)";
+    }
+    return Snotspawn;
+}());
 var Utils = (function () {
     function Utils() {
     }

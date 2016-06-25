@@ -57,5 +57,10 @@ hit {
 
 enemy {
     width: 200px; min-height: 200px;
-    background-image: ur('../images/Snottwo.gif')
+    background-image: url('../images/Snottwo.gif')
+}
+
+snotspawn {
+    width:200px; min-height: 200px;
+    background-image: url('../images/Snot.gif')
 }

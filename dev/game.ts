@@ -13,7 +13,13 @@ class Game {
     
     private utils:Utils;
     
+    private timeid:number;
+    private numelements:number;
+    
     constructor() {
+        
+        this.numelements = 0;
+        this.timeid = setInterval(this.createElements.bind(this),50);
         this.level = new Level(this);
         this.playerone = new Playerone(65, 68, 87, 83);
         this.playertwo = new Playertwo(37, 39, 38, 40);
@@ -41,6 +47,16 @@ class Game {
                
         // hiermee wordt de gameloop opnieuw aangeroepen
         requestAnimationFrame(this.gameLoop.bind(this));
-    }
+     }
+     
+     private createElements():void {
+         
+         let snotspawn:Snotspawn = new Snotspawn();
+         
+         this.numelements++;
+         if(this.numelements > 100){
+             clearInterval(this.timeid);
+         }
+     }
 } 
 
