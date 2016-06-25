@@ -235,13 +235,13 @@ var Game = (function () {
 window.addEventListener("load", function () {
     new Game();
 });
-var Utils = (function () {
-    function Utils() {
+var Snotkill = (function () {
+    function Snotkill() {
     }
-    Utils.prototype.objectsCollide = function (c1, c2) {
+    Snotkill.prototype.objectsCollide = function (c1, c2) {
         return (c1.x < c2.x + c2.width && c1.x + c1.width > c2.x && c1.y < c2.y + c2.height && c1.height + c1.y > c2.y);
     };
-    return Utils;
+    return Snotkill;
 }());
 var Snotspawn = (function () {
     function Snotspawn() {
@@ -255,6 +255,12 @@ var Snotspawn = (function () {
         div.style.webkitFilter = "hue-rotate(" + color + "deg)";
         div.style.filter = "hue-rotate(" + color + "deg)";
     }
+    Snotspawn.prototype.showHit = function (hit) {
+        if (hit) {
+        }
+        else {
+        }
+    };
     return Snotspawn;
 }());
 var Utils = (function () {
