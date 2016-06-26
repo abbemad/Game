@@ -27,7 +27,7 @@ class Snotspawn {
     }
         public showHit(hit:boolean) : void {
         if(hit){
-            
+            console.log ("Hallo");
         } else {
             
         }

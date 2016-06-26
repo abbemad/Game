@@ -89,9 +89,10 @@ class Playerone {
     }
 
     // deze functie toont of we geraakt worden of niet
-    public showHit(hit:boolean) : void {
-        if(hit){
+    public showHit(hittwo:boolean) : void {
+        if(hittwo){
             this.div.style.borderColor = "red";
+            console.log("gasg");
         } else {
             this.div.style.borderColor = "greenyellow";
         }

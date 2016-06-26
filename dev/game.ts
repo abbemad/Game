@@ -11,6 +11,8 @@ class Game {
     private playerone:Playerone;
     private playertwo:Playertwo;
     
+    private snotspawn:Snotspawn;
+    
     private utils:Utils;
     
     private timeid:number;
@@ -35,25 +37,9 @@ class Game {
         this.score += i; // score bijhouden
     }
     
-    private gameLoop(){
-        this.playerone.move();
-        this.playertwo.move();
-        
-        this.level.update();
-        this.level.draw();
-        
-        let hit:boolean = this.utils.objectsCollide(this.playerone, this.playertwo); //als de spelers elkaar aanraken veranderd hun blokje
-               
-        this.playerone.showHit(hit);
-        this.playertwo.showHit(hit);
-               
-        //gameloop opnieuw aangeroepen
-        requestAnimationFrame(this.gameLoop.bind(this));
-     }
-     
-     private createElements():void {
+         private createElements():void {
          
-         let snotspawn:Snotspawn = new Snotspawn(); //element gemaakt van snotwezens
+         this.snotspawn = new Snotspawn(); //element gemaakt van snotwezens
          
          this.numelements++;
          
@@ -62,5 +48,25 @@ class Game {
              clearInterval(this.timeid);
          }
      }
+    
+    private gameLoop(){
+        this.playerone.move();
+        this.playertwo.move();
+        
+        this.level.update();
+        this.level.draw();
+        
+        let hit:boolean = this.utils.objectsCollide(this.playerone, this.playertwo); //als de spelers elkaar aanraken veranderd hun blokj
+        let hittwo:boolean = this.utils.objectsCollidetwee(this.playerone, this.snotspawn);
+               
+        this.playerone.showHit(hit);
+        this.playertwo.showHit(hit);
+        
+        this.playerone.showHit(hittwo);
+               
+        //gameloop opnieuw aangeroepen
+        requestAnimationFrame(this.gameLoop.bind(this));
+     }
+     
 } 
 

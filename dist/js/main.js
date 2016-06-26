@@ -105,9 +105,10 @@ var Playerone = (function () {
         this.y = this.y - this.upSpeed + this.downSpeed;
         this.div.style.transform = "translate(" + this.x + "px, " + this.y + "px) scaleX(-1)";
     };
-    Playerone.prototype.showHit = function (hit) {
-        if (hit) {
+    Playerone.prototype.showHit = function (hittwo) {
+        if (hittwo) {
             this.div.style.borderColor = "red";
+            console.log("gasg");
         }
         else {
             this.div.style.borderColor = "greenyellow";
@@ -213,36 +214,30 @@ var Game = (function () {
     Game.prototype.updateScore = function (i) {
         this.score += i;
     };
+    Game.prototype.createElements = function () {
+        this.snotspawn = new Snotspawn();
+        this.numelements++;
+        if (this.numelements > 40) {
+            clearInterval(this.timeid);
+        }
+    };
     Game.prototype.gameLoop = function () {
         this.playerone.move();
         this.playertwo.move();
         this.level.update();
         this.level.draw();
         var hit = this.utils.objectsCollide(this.playerone, this.playertwo);
+        var hittwo = this.utils.objectsCollidetwee(this.playerone, this.snotspawn);
         this.playerone.showHit(hit);
         this.playertwo.showHit(hit);
+        this.playerone.showHit(hittwo);
         requestAnimationFrame(this.gameLoop.bind(this));
-    };
-    Game.prototype.createElements = function () {
-        var snotspawn = new Snotspawn();
-        this.numelements++;
-        if (this.numelements > 40) {
-            clearInterval(this.timeid);
-        }
     };
     return Game;
 }());
 window.addEventListener("load", function () {
     new Game();
 });
-var Snotkill = (function () {
-    function Snotkill() {
-    }
-    Snotkill.prototype.objectsCollide = function (c1, c2) {
-        return (c1.x < c2.x + c2.width && c1.x + c1.width > c2.x && c1.y < c2.y + c2.height && c1.height + c1.y > c2.y);
-    };
-    return Snotkill;
-}());
 var Snotspawn = (function () {
     function Snotspawn() {
         var div = document.createElement("snotspawn");
@@ -257,6 +252,7 @@ var Snotspawn = (function () {
     }
     Snotspawn.prototype.showHit = function (hit) {
         if (hit) {
+            console.log("Hallo");
         }
         else {
         }
@@ -267,6 +263,9 @@ var Utils = (function () {
     function Utils() {
     }
     Utils.prototype.objectsCollide = function (c1, c2) {
+        return (c1.x < c2.x + c2.width && c1.x + c1.width > c2.x && c1.y < c2.y + c2.height && c1.height + c1.y > c2.y);
+    };
+    Utils.prototype.objectsCollidetwee = function (c1, c2) {
         return (c1.x < c2.x + c2.width && c1.x + c1.width > c2.x && c1.y < c2.y + c2.height && c1.height + c1.y > c2.y);
     };
     return Utils;
