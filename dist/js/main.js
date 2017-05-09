@@ -1,3 +1,8 @@
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var Playerone = (function () {
     function Playerone(left, right, up, down) {
         this.leftSpeed = 0;
@@ -79,7 +84,7 @@ var Game = (function () {
     };
     Game.prototype.createElements = function () {
         console.log("test");
-        this.snotspawn = new Snotspawn();
+        this.snotspawn = new Snotspawn(this);
     };
     Game.prototype.gameLoop = function () {
         console.log(this.snotspawn.x);
@@ -89,35 +94,31 @@ var Game = (function () {
         this.snotspawn.showHit(hit);
         requestAnimationFrame(this.gameLoop.bind(this));
     };
+    Game.prototype.createSnot = function () {
+        console.log("UBERTEST");
+        this.snotspawn = new Snotspawn(this);
+    };
     return Game;
 }());
 var Gameobjects = (function () {
-    function Gameobjects(l, x, y, width, height, div) {
-        this.div = document.createElement(div);
+    function Gameobjects(x, y, width, height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
     }
-    Gameobjects.prototype.update = function () {
-        this.x += 2;
-    };
-    Gameobjects.prototype.draw = function () {
-        this.div.style.transform = "translate(" + this.x + "px, " + this.y + "px)";
-    };
     return Gameobjects;
 }());
 window.addEventListener("load", function () {
     new Game();
 });
-var Snotspawn = (function () {
-    function Snotspawn() {
+var Snotspawn = (function (_super) {
+    __extends(Snotspawn, _super);
+    function Snotspawn(g) {
+        _super.call(this, (Math.random() * window.innerHeight), (Math.random() * window.innerHeight), 100, 100);
+        this.game = g;
         this.div = document.createElement("snotspawn");
         document.body.appendChild(this.div);
-        this.x = (Math.random() * window.innerHeight);
-        this.y = (Math.random() * window.innerHeight);
-        this.width = 100;
-        this.height = 100;
         this.div.style.left = this.x + "px";
         this.div.style.top = this.y + "px";
         var color = Math.random() * 360;
@@ -127,12 +128,13 @@ var Snotspawn = (function () {
     Snotspawn.prototype.showHit = function (hit) {
         if (hit) {
             this.div.remove();
+            this.game.createSnot();
         }
         else {
         }
     };
     return Snotspawn;
-}());
+}(Gameobjects));
 var Utils = (function () {
     function Utils() {
     }

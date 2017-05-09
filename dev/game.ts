@@ -34,7 +34,7 @@ class Game {
              
          console.log("test");
 
-         this.snotspawn = new Snotspawn();
+         this.snotspawn = new Snotspawn(this);
          
      }
     
@@ -48,11 +48,16 @@ class Game {
                
         this.playerone.showHit(hit);
         this.snotspawn.showHit(hit);
-        
+        //
                
         //gameloop opnieuw aangeroepen
         requestAnimationFrame(this.gameLoop.bind(this));
      }
      
+     public createSnot(){
+         console.log("UBERTEST");
+         this.snotspawn = new Snotspawn(this);
+         
+     }
+     
 } 
-

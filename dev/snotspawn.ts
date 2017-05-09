@@ -1,24 +1,24 @@
-class Snotspawn {
+/// <reference path="game.ts" />
+/// <reference path="gameobjects.ts" />
+
+
+class Snotspawn extends Gameobjects {
     
-        // om te zien of objecten elkaar raken moeten ze een public x,y,width,height hebben
-        public x : number;
-        public y : number;
-        public width: number;
-        public height: number;
-            
+       // om te zien of objecten elkaar raken moeten ze een public x,y,width,height hebben
         private div:HTMLElement;
+            
+        private game:Game;
       
-    constructor() {
+    constructor(g:Game) {
+        super((Math.random() * window.innerHeight),(Math.random() * window.innerHeight),100,100);
+        
+        this.game = g;
+        
         this.div = document.createElement("snotspawn");
         document.body.appendChild(this.div);
   
         // random positie
-        
-        this.x = (Math.random() * window.innerHeight);
-        this.y = (Math.random() * window.innerHeight);
-        this.width = 100;
-        this.height = 100;
-        
+
         this.div.style.left = this.x + "px";
         this.div.style.top = this.y + "px";
         
@@ -32,7 +32,9 @@ class Snotspawn {
         public showHit(hit:boolean) : void {
         if(hit){
             this.div.remove();
-        } else {
+            this.game.createSnot();
+
+            } else {
             
         }
     }

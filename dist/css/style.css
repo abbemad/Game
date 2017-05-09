@@ -39,11 +39,9 @@ bigsnot {
 playerone {
     width:187px; min-height:197px;
     background-image: url('../images/playerone.gif');
-    border: 4px solid blue;
 }
 
 hit {
-    color:purple;
     padding:20px;
     width:540px;
     bottom:20px;
@@ -57,5 +55,4 @@ enemy {
 snotspawn {
     width:145px; height: 145px;
     background-image: url('../images/Snot.gif');
-    border: 4px solid blue;
 }
