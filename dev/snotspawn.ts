@@ -6,28 +6,32 @@ class Snotspawn {
         public width: number;
         public height: number;
             
+        private div:HTMLElement;
+      
     constructor() {
-        let div:HTMLElement = document.createElement("snotspawn");
-        document.body.appendChild(div);
+        this.div = document.createElement("snotspawn");
+        document.body.appendChild(this.div);
   
         // random positie
         
-        let startx:number = (Math.random() * window.innerWidth);
-        let starty:number = (Math.random() * window.innerHeight);      
+        this.x = (Math.random() * window.innerHeight);
+        this.y = (Math.random() * window.innerHeight);
+        this.width = 100;
+        this.height = 100;
         
-        div.style.left = startx + "px";
-        div.style.top = starty + "px";
+        this.div.style.left = this.x + "px";
+        this.div.style.top = this.y + "px";
         
         // random kleur
         let color:number = Math.random() * 360;
         
-        div.style.webkitFilter = "hue-rotate("+color+"deg)";
-        div.style.filter = "hue-rotate("+color+"deg)";
+        this.div.style.webkitFilter = "hue-rotate("+color+"deg)";
+        this.div.style.filter = "hue-rotate("+color+"deg)";
         
     }
         public showHit(hit:boolean) : void {
         if(hit){
-            console.log ("Hallo");
+            this.div.remove();
         } else {
             
         }

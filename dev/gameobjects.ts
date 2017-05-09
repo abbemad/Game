@@ -9,13 +9,10 @@ class Gameobjects {
     protected width:number;
     protected height:number;
     
-    protected level:Level;
 
-    constructor(l:Level,x:number,y:number,width:number,height:number,div:string) {
-        this.level = l;
-        
+    constructor(l:Game,x:number,y:number,width:number,height:number,div:string) {
+
         this.div = document.createElement(div);
-        this.level.div.appendChild(this.div);
         
         this.x = x;
         this.y = y;
